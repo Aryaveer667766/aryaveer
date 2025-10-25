@@ -1,517 +1,621 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Aryaveer Mishra — Founder & CEO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aryaveer Mishra - Personal Portfolio</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-sQ8m5s1YV6kQ1zRZ1Q0z7KXZqz5o9v6nq9Q+v6n1z6b2Q9x6H6Q1z9Q6n1z6b2Q9x" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <style>
-    :root{
-      --glass-bg: rgba(255,255,255,0.03);
-      --glass-border: rgba(255,255,255,0.06);
-      --accent-from: #ff7ab6;
-      --accent-via: #a78bfa;
-      --accent-to: #60a5fa;
-    }
-    html { scroll-behavior: smooth; }
-    .glass {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 6px 20px rgba(2,6,23,0.6);
-    }
-    .grad-text {
-      background-image: linear-gradient(90deg, var(--accent-from), var(--accent-via), var(--accent-to));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .card-hover { transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s; }
-    .card-hover:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 12px 30px rgba(2,6,23,0.6); }
-    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
-    .fade-in.show { opacity: 1; transform: translateY(0); }
-    #backTop { transition: opacity .25s, transform .25s; opacity: 0; pointer-events: none; }
-    #backTop.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
-    a:focus, button:focus, input:focus, textarea:focus { outline: 2px solid rgba(124,58,237,0.25); outline-offset: 2px; }
-    body {
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.02), transparent 6%),
-                  radial-gradient(800px 400px at 90% 90%, rgba(255,255,255,0.015), transparent 6%),
-                  #060612;
-      color: #e6eef8;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    .iframe-wrap { aspect-ratio: 16/9; }
-    @media (max-width: 640px) { .iframe-wrap { aspect-ratio: 4/3; } }
-    .blocked-embed { display:flex; align-items:center; justify-content:center; height:100%; color:#cbd5e1; background:linear-gradient(180deg, rgba(2,6,23,0.2), rgba(2,6,23,0.4)); text-align:center; padding:1rem; }
-  </style>
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom gradient for hero text */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #6366f1, #a855f7, #ec4899);
+        }
+        /* Scroll Animation Classes */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Back to top button */
+        #to-top-btn {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        }
+        #to-top-btn.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-<body class="antialiased">
+<body class="bg-gray-900 text-gray-100 antialiased">
 
-<!-- NAVBAR -->
-<header class="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6">
-  <nav class="mx-auto max-w-6xl glass rounded-2xl p-3 flex items-center justify-between gap-4">
-    <div class="flex items-center gap-3">
-      <a href="#hero" class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500 flex items-center justify-center text-black font-bold">AM</div>
-        <div class="hidden sm:block">
-          <div class="text-sm font-semibold">Aryaveer Mishra</div>
-          <div class="text-xs text-slate-300">Student · Entrepreneur</div>
-        </div>
-      </a>
-    </div>
-
-    <ul id="navLinks" class="hidden md:flex items-center gap-6 text-sm">
-      <li><a class="hover:underline" href="#ventures">Ventures</a></li>
-      <li><a class="hover:underline" href="#services">Services</a></li>
-      <li><a class="hover:underline" href="#achievements">Achievements</a></li>
-      <li><a class="hover:underline" href="#articles">Articles</a></li>
-      <li><a class="hover:underline" href="#contact">Contact</a></li>
-    </ul>
-
-    <div class="flex items-center gap-3">
-      <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm card-hover">
-        <i class="fa-regular fa-paper-plane"></i><span>Get In Touch</span>
-      </a>
-
-      <button id="hamburger" aria-label="Open menu" class="md:hidden p-2 rounded-md glass">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </div>
-  </nav>
-
-  <div id="mobileMenu" class="md:hidden mt-3 mx-auto max-w-6xl glass rounded-2xl p-4 transform-gpu scale-y-0 origin-top transition-transform" style="transform-origin:top;">
-    <ul class="flex flex-col gap-3 text-sm">
-      <li><a href="#ventures" class="block p-3 rounded card-hover">Ventures</a></li>
-      <li><a href="#services" class="block p-3 rounded card-hover">Services</a></li>
-      <li><a href="#achievements" class="block p-3 rounded card-hover">Achievements</a></li>
-      <li><a href="#articles" class="block p-3 rounded card-hover">Articles</a></li>
-      <li><a href="#contact" class="block p-3 rounded card-hover">Contact</a></li>
-    </ul>
-  </div>
-</header>
-
-<main class="pt-28">
-
-  <!-- HERO -->
-  <section id="hero" class="min-h-screen flex items-center">
-    <div class="mx-auto max-w-6xl px-6 sm:px-8 py-20 flex flex-col lg:flex-row items-center gap-10">
-      <div class="flex-1 fade-in">
-        <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight grad-text">Aryaveer Mishra</h1>
-        <p class="mt-4 text-slate-300 max-w-2xl text-lg">
-          Founder &amp; CEO of <strong>Feasibility Media</strong> (now international) • Co-Founder &amp; CEO of <strong>Swadishth</strong>
-        </p>
-
-        <div class="mt-8 flex gap-4 flex-wrap">
-          <a href="#ventures" class="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 text-black font-semibold shadow-lg card-hover">
-            <i class="fa-solid fa-rocket"></i> View Ventures
-          </a>
-          <a href="#contact" class="inline-flex items-center gap-3 px-5 py-3 rounded-full glass border border-slate-700 card-hover">
-            <i class="fa-regular fa-envelope"></i> Get In Touch
-          </a>
-        </div>
-      </div>
-
-      <div class="w-full lg:w-96 fade-in">
-        <div class="glass rounded-2xl p-5">
-          <div class="flex items-center gap-4">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=29f6d5c2a8748f7f3f63fa7cdbf7f73c" alt="Profile" class="w-20 h-20 object-cover rounded-lg shadow-md" />
-            <div>
-              <div class="text-lg font-semibold">Hi, I'm Aryaveer</div>
-              <div class="text-xs text-slate-300">11th Grade • Founder &amp; CEO</div>
+    <!-- Header / Navigation -->
+    <header class="bg-gray-900/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 border-b border-gray-700/50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Name -->
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-2xl font-bold text-gradient bg-gradient-to-r from-indigo-400 to-purple-500">
+                        Aryaveer Mishra
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-white transition-colors duration-200 nav-link-desktop">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-200 nav-link-desktop">About</a>
+                    <a href="#services" class="text-gray-300 hover:text-white transition-colors duration-200 nav-link-desktop">Services</a>
+                    <a href="#mission" class="text-gray-300 hover:text-white transition-colors duration-200 nav-link-desktop">My Mission</a>
+                    <a href="#achievements" class="text-gray-300 hover:text-white transition-colors duration-200 nav-link-desktop">Achievements</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white transition-colors duration-200 nav-link-desktop">Ventures</a>
+                    <a href="#testimonials" class="text-gray-300 hover:text-white transition-colors duration-200 nav-link-desktop">Testimonials</a>
+                    <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-200 nav-link-desktop">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <!-- Hamburger Icon -->
+                        <svg id="icon-menu" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                        <!-- Close Icon (hidden by default) -->
+                        <svg id="icon-close" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-          </div>
+        </nav>
 
-          <div class="mt-4 grid grid-cols-2 gap-3 text-sm text-slate-300">
-            <div class="flex items-center gap-3"><i class="fa-solid fa-school text-sm"></i> Grade: XI</div>
-            <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot"></i> India</div>
-            <div class="flex items-center gap-3"><i class="fa-solid fa-lightbulb"></i> Ideas</div>
-            <div class="flex items-center gap-3"><i class="fa-solid fa-user-group"></i> Team-builder</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- AS FEATURED IN -->
-  <section id="featured" class="py-12">
-    <div class="mx-auto max-w-6xl px-6 sm:px-8">
-      <h2 class="text-2xl font-bold grad-text fade-in">As Featured In</h2>
-      <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-6 fade-in">
-        <div class="glass p-4 flex items-center justify-center text-slate-300 card-hover"><img src="https://dummyimage.com/140x40/1f2937/fff&text=Hindustan+Times" alt="HT" /></div>
-        <div class="glass p-4 flex items-center justify-center text-slate-300 card-hover"><img src="https://dummyimage.com/140x40/1f2937/fff&text=YourStory" alt="YS" /></div>
-        <div class="glass p-4 flex items-center justify-center text-slate-300 card-hover"><img src="https://dummyimage.com/140x40/1f2937/fff&text=The+Better" alt="Better" /></div>
-        <div class="glass p-4 flex items-center justify-center text-slate-300 card-hover"><img src="https://dummyimage.com/140x40/1f2937/fff&text=Local+News" alt="Local" /></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT & TOOLKIT -->
-  <section id="about" class="py-12">
-    <div class="mx-auto max-w-6xl px-6 sm:px-8 grid lg:grid-cols-2 gap-8 items-start">
-      <div class="fade-in">
-        <h2 class="text-2xl font-bold grad-text">About Me</h2>
-        <p class="mt-4 text-slate-300">
-          I’m Aryaveer Mishra, an 11th-grade student and young entrepreneur leading two fast-growing ventures — Feasibility Media, an international digital innovation company, and Swadishth, a next-gen food brand. I’m passionate about building brands, leading teams, and creating ideas that make real impact.
-        </p>
-        <ul class="mt-4 space-y-2 text-slate-300">
-          <li class="flex items-start gap-3"><i class="fa-solid fa-check text-sm mt-1"></i> Rapid prototyping and MVP building</li>
-          <li class="flex items-start gap-3"><i class="fa-solid fa-check text-sm mt-1"></i> Social media growth & content strategy</li>
-          <li class="flex items-start gap-3"><i class="fa-solid fa-check text-sm mt-1"></i> Small team leadership & community growth</li>
-        </ul>
-      </div>
-
-      <div class="fade-in">
-        <h2 class="text-2xl font-bold grad-text">My Toolkit</h2>
-        <div class="mt-4 grid grid-cols-2 gap-3">
-          <div class="glass p-3 rounded-lg flex items-center gap-3 card-hover">
-            <i class="fa-solid fa-briefcase text-xl"></i>
-            <div>
-              <div class="font-semibold">Entrepreneurship</div>
-              <div class="text-xs text-slate-300">Idea → MVP → Launch</div>
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-800 border-t border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium nav-link-mobile">Home</a>
+                <a href="#about" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium nav-link-mobile">About</a>
+                <a href="#services" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium nav-link-mobile">Services</a>
+                <a href="#mission" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium nav-link-mobile">My Mission</a>
+                <a href="#achievements" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium nav-link-mobile">Achievements</a>
+                <a href="#projects" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium nav-link-mobile">Ventures</a>
+                <a href="#testimonials" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium nav-link-mobile">Testimonials</a>
+                <a href="#contact" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium nav-link-mobile">Contact</a>
             </div>
-          </div>
-          <div class="glass p-3 rounded-lg flex items-center gap-3 card-hover">
-            <i class="fa-brands fa-instagram text-xl"></i>
-            <div>
-              <div class="font-semibold">Social Media</div>
-              <div class="text-xs text-slate-300">Growth & Strategy</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Section 1: Hero -->
+        <section id="home" class="min-h-screen flex items-center pt-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="flex flex-col items-center">
+                    
+                    <!-- 
+                        REPLACE THIS IMG SRC with your own image URL. 
+                        A square image (like 200x200) is recommended.
+                    -->
+                    <img 
+                        class="h-40 w-40 rounded-full object-cover shadow-xl mb-6 ring-4 ring-indigo-500/30"
+                        src="admin.jpg"
+                        onerror="this.onerror=null;this.src='https://placehold.co/200x200/4F46E5/FFFFFF?text=AM';"
+                        alt="Portrait of Aryaveer Mishra"
+                    >
+
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight">
+                        <span class="block text-gray-100">Hi, I'm</span>
+                        <span class="block text-gradient mt-2">Aryaveer Mishra</span>
+                    </h1>
+                    <p class="mt-4 text-lg sm:text-2xl text-gray-300 max-w-3xl">
+                        An 11th-grade student & young entrepreneur from Ranchi, Jharkhand. Co-founder of Swadishth and Founder of Feasibility Media.
+                    </p>
+                    <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="#projects" class="inline-block bg-indigo-600 text-white font-medium px-8 py-3 rounded-lg shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:-translate-y-0.5">
+                            View My Ventures
+                        </a>
+                        <a href="#contact" class="inline-block bg-gray-700 text-gray-100 font-medium px-8 py-3 rounded-lg shadow-lg hover:bg-gray-600 transition-all duration-300">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="glass p-3 rounded-lg flex items-center gap-3 card-hover">
-            <i class="fa-solid fa-pen-nib text-xl"></i>
-            <div>
-              <div class="font-semibold">Content Creation</div>
-              <div class="text-xs text-slate-300">Copy & Visuals</div>
+        </section>
+
+        <!-- "As Featured In" Bar (Restored) -->
+        <section class="py-12 bg-gray-800/30">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-center text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">
+                    As Featured In
+                </h3>
+                <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
+                    <span class="text-2xl font-semibold text-gray-500 hover:text-gray-300 transition-colors">Hindustan Times</span>
+                    <span class="text-2xl font-semibold text-gray-500 hover:text-gray-300 transition-colors">Prabhat Khabar</span>
+                    <span class="text-2xl font-semibold text-gray-500 hover:text-gray-300 transition-colors">YourStory</span>
+                    <span class="text-2xl font-semibold text-gray-500 hover:text-gray-300 transition-colors">ET Entrepreneur</span>
+                </div>
             </div>
-          </div>
-          <div class="glass p-3 rounded-lg flex items-center gap-3 card-hover">
-            <i class="fa-brands fa-html5 text-xl"></i>
-            <div>
-              <div class="font-semibold">Web Basics</div>
-              <div class="text-xs text-slate-300">HTML/CSS/Vanilla JS</div>
+        </section>
+
+        <!-- Section 2: About Me (Restored) -->
+        <section id="about" class="py-24 bg-gray-800/50 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <!-- About Text -->
+                    <div>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-gradient bg-gradient-to-r from-indigo-400 to-purple-500 mb-6">
+                            About Me
+                        </h2>
+                        <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                            Hello! I'm Aryaveer, a student and entrepreneur based in Ranchi, Jharkhand. Driven by a passion for innovation, I am the Co-founder & CEO of **Swadishth** and the Founder & CEO of **Feasibility Media**, a social media management and marketing agency.
+                        </p>
+                        <p class="text-gray-300 text-lg leading-relaxed">
+                            I achieved 91% in my 10th board exams and am now channeling that same dedication into my ventures and studies. My ultimate goal is to create a positive and lasting change in the world.
+                        </p>
+                    </div>
+                    
+                    <!-- Skills -->
+                    <div>
+                        <h3 class="text-2xl font-semibold text-white mb-6">My Toolkit</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="inline-flex items-center gap-2 bg-gray-700 text-indigo-300 px-4 py-2 rounded-lg text-sm font-medium">
+                                <i class="fa-solid fa-rocket w-4 h-4"></i> Entrepreneurship
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-gray-700 text-cyan-300 px-4 py-2 rounded-lg text-sm font-medium">
+                                <i class="fa-solid fa-hashtag w-4 h-4"></i> Social Media Marketing
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-gray-700 text-blue-300 px-4 py-2 rounded-lg text-sm font-medium">
+                                <i class="fa-solid fa-users w-4 h-4"></i> Leadership
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-gray-700 text-teal-300 px-4 py-2 rounded-lg text-sm font-medium">
+                                <i class="fa-solid fa-lightbulb w-4 h-4"></i> Business Strategy
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-gray-700 text-green-300 px-4 py-2 rounded-lg text-sm font-medium">
+                                <i class="fa-solid fa-microphone w-4 h-4"></i> Public Speaking
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-gray-700 text-pink-300 px-4 py-2 rounded-lg text-sm font-medium">
+                                <i class="fa-solid fa-bullhorn w-4 h-4"></i> Marketing
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-gray-700 text-orange-300 px-4 py-2 rounded-lg text-sm font-medium">
+                                <i class="fa-solid fa-list-check w-4 h-4"></i> Project Management
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-gray-700 text-blue-300 px-4 py-2 rounded-lg text-sm font-medium">
+                                <i class="fa-solid fa-handshake w-4 h-4"></i> Client Relations
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="py-12">
-    <div class="mx-auto max-w-6xl px-6 sm:px-8">
-      <h2 class="text-2xl font-bold grad-text fade-in">Services</h2>
-      <div class="mt-6 grid sm:grid-cols-3 gap-6">
-        <div class="glass p-6 rounded-lg card-hover fade-in">
-          <i class="fa-solid fa-chart-line text-2xl"></i>
-          <h3 class="mt-3 font-semibold">Social Media Management</h3>
-          <p class="mt-2 text-slate-300 text-sm">Growth strategies, content calendars, and community building for early-stage brands.</p>
-        </div>
-        <div class="glass p-6 rounded-lg card-hover fade-in">
-          <i class="fa-solid fa-camera-retro text-2xl"></i>
-          <h3 class="mt-3 font-semibold">Content Creation</h3>
-          <p class="mt-2 text-slate-300 text-sm">Short videos, creatives, and copy for campaigns that convert.</p>
-        </div>
-        <div class="glass p-6 rounded-lg card-hover fade-in">
-          <i class="fa-solid fa-lightbulb text-2xl"></i>
-          <h3 class="mt-3 font-semibold">Idea Consulting</h3>
-          <p class="mt-2 text-slate-300 text-sm">Early-stage feedback, lean experiments, and launch playbooks.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- Section 3: Services (Restored) -->
+        <section id="services" class="py-24 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gradient bg-gradient-to-r from-indigo-400 to-purple-500">
+                        What I Offer
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-300">Services provided by Feasibility Media.</p>
+                </div>
 
-  <!-- MY MISSION -->
-  <section id="mission" class="py-16">
-    <div class="mx-auto max-w-4xl px-6 sm:px-8 text-center fade-in">
-      <h2 class="text-2xl font-bold grad-text">My Mission</h2>
-      <blockquote class="mt-6 text-slate-300 text-lg italic glass p-6 rounded-xl">"Build small. Learn fast. Help others grow." — I focus on shipping useful projects that teach me and create impact for people around me.</blockquote>
-    </div>
-  </section>
+                <!-- Services Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Service Card 1: Social Media Management -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl p-8 flex flex-col items-center text-center transform transition-all duration-300 hover:scale-[1.03] hover:shadow-indigo-500/20">
+                        <div class="text-5xl text-cyan-400 mb-4">
+                            <i class="fa-solid fa-share-nodes"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Social Media Management</h3>
+                        <p class="text-gray-400">
+                            Comprehensive management of your social profiles to build engagement, grow your audience, and drive results.
+                        </p>
+                    </div>
+                    
+                    <!-- Service Card 2: Content Creation -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl p-8 flex flex-col items-center text-center transform transition-all duration-300 hover:scale-[1.03] hover:shadow-indigo-500/20">
+                        <div class="text-5xl text-green-400 mb-4">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Content Creation</h3>
+                        <p class="text-gray-400">
+                            Crafting compelling graphics, videos, and copy that capture your brand's voice and captivate your audience.
+                        </p>
+                    </div>
+                    
+                    <!-- Service Card 3: Brand Strategy -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl p-8 flex flex-col items-center text-center transform transition-all duration-300 hover:scale-[1.03] hover:shadow-indigo-500/20">
+                        <div class="text-5xl text-orange-400 mb-4">
+                            <i class="fa-solid fa-compass-drafting"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Brand Strategy</h3>
+                        <p class="text-gray-400">
+                            Developing a cohesive and powerful brand identity that resonates with your target market and sets you apart.
+                        </p>
+                    </div>
 
-  <!-- ACHIEVEMENTS -->
-  <section id="achievements" class="py-12">
-    <div class="mx-auto max-w-6xl px-6 sm:px-8">
-      <h2 class="text-2xl font-bold grad-text fade-in">Achievements</h2>
-      <div class="mt-6 grid sm:grid-cols-3 gap-6">
-        <div class="glass p-6 rounded-lg card-hover fade-in">
-          <i class="fa-solid fa-award text-2xl"></i>
-          <h3 class="mt-3 font-semibold">Academic Excellence</h3>
-          <p class="mt-2 text-slate-300 text-sm">Consistent high grades and strong academic performance.</p>
-        </div>
-        <div class="glass p-6 rounded-lg card-hover fade-in">
-          <i class="fa-solid fa-trophy text-2xl"></i>
-          <h3 class="mt-3 font-semibold">Student Innovator Prize</h3>
-          <p class="mt-2 text-slate-300 text-sm">Awarded for a small-school tech initiative.</p>
-        </div>
-        <div class="glass p-6 rounded-lg card-hover fade-in">
-          <i class="fa-solid fa-handshake text-2xl"></i>
-          <h3 class="mt-3 font-semibold">Community Leader</h3>
-          <p class="mt-2 text-slate-300 text-sm">Organized local workshops and mentoring sessions.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VENTURES / PROJECTS -->
-  <section id="ventures" class="py-12">
-    <div class="mx-auto max-w-6xl px-6 sm:px-8">
-      <h2 class="text-2xl font-bold grad-text fade-in">Ventures</h2>
-      <div class="mt-6 grid md:grid-cols-2 gap-6">
-
-        <!-- Feasibility Media — embed live -->
-        <div class="glass p-4 rounded-lg card-hover fade-in">
-          <div class="flex items-center justify-between">
-            <div>
-              <div class="text-sm text-slate-300">Feasibility Media — International digital innovation</div>
-              <h3 class="mt-2 font-semibold">Feasibility Media</h3>
+                </div>
             </div>
-            <div class="text-xs text-slate-400">Founder &amp; CEO</div>
-          </div>
+        </section>
 
-          <div class="mt-4 rounded overflow-hidden iframe-wrap border border-slate-800">
-            <!-- Live embed (may be blocked by site). If blocked, direct link below will open in new tab -->
-            <iframe src="https://feasibilitymedia.vercel.app" title="Feasibility Media" class="w-full h-full border-0" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
-          </div>
-
-          <div class="mt-3 flex items-center gap-3">
-            <a href="https://feasibilitymedia.vercel.app" target="_blank" rel="noopener" class="px-4 py-2 rounded-full glass card-hover text-sm"><i class="fa-solid fa-up-right-from-square"></i> Open Site</a>
-            <a href="#contact" class="px-4 py-2 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 text-black text-sm card-hover"><i class="fa-solid fa-briefcase"></i> Work With Me</a>
-          </div>
-        </div>
-
-        <!-- Swadishth — preview + visit -->
-        <div class="glass p-4 rounded-lg card-hover fade-in">
-          <div class="flex items-center justify-between">
-            <div>
-              <div class="text-sm text-slate-300">Swadishth — Next-gen food brand</div>
-              <h3 class="mt-2 font-semibold">Swadishth</h3>
+        <!-- Section 4: My Mission (Restored) -->
+        <section id="mission" class="py-24 bg-gray-800/50 fade-in-section">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gradient bg-gradient-to-r from-indigo-400 to-purple-500">
+                        My Mission
+                    </h2>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-quote-left text-7xl text-gray-700 absolute -top-8 -left-8 opacity-50 z-0"></i>
+                    <p class="relative z-10 text-2xl sm:text-3xl font-medium text-gray-100 leading-relaxed">
+                        "I believe in the power of entrepreneurship to solve real-world problems. My goal is to build ventures that not only succeed as businesses but also create tangible, positive change in our communities, starting right here in Jharkhand."
+                    </p>
+                    <i class="fa-solid fa-quote-right text-7xl text-gray-700 absolute -bottom-8 -right-8 opacity-50 z-0"></i>
+                </div>
             </div>
-            <div class="text-xs text-slate-400">Co-Founder &amp; CEO</div>
-          </div>
+        </section>
 
-          <img src="https://dummyimage.com/1200x700/1f2937/fff&text=Swadishth+Preview" alt="Swadishth preview" class="w-full h-56 object-cover rounded mt-4" />
+        <!-- Section 5: Achievements (Restored) -->
+        <section id="achievements" class="py-24 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gradient bg-gradient-to-r from-indigo-400 to-purple-500">
+                        Achievements & Recognition
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-300">A few of my proudest moments.</p>
+                </div>
 
-          <p class="mt-3 text-slate-300 text-sm">An evolving e-commerce experience focused on tasty, modern food products. Visit the live store to explore.</p>
+                <!-- Achievements Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Achievement Card 1: Academic -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl p-8 flex flex-col items-center text-center transform transition-all duration-300 hover:scale-[1.03] hover:shadow-indigo-500/20">
+                        <div class="text-5xl text-indigo-400 mb-4">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Academic Excellence</h3>
+                        <p class="text-gray-400">
+                            Achieved a score of 91% in my Class X Board Examinations, demonstrating a strong commitment to academic diligence and success.
+                        </p>
+                    </div>
+                    
+                    <!-- Achievement Card 2: Entrepreneurship (Mock) -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl p-8 flex flex-col items-center text-center transform transition-all duration-300 hover:scale-[1.03] hover:shadow-indigo-500/20">
+                        <div class="text-5xl text-purple-400 mb-4">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Jharkhand Student Innovator Prize</h3>
+                        <p class="text-gray-400">
+                            Awarded for the innovative business model of Feasibility Media at the 2024 State Student Start-up Conclave.
+                        </p>
+                    </div>
+                    
+                    <!-- Achievement Card 3: Leadership (Mock) -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl p-8 flex flex-col items-center text-center transform transition-all duration-300 hover:scale-[1.03] hover:shadow-indigo-500/20">
+                        <div class="text-5xl text-pink-400 mb-4">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Ranchi Future Leaders Grant</h3>
+                        <p class="text-gray-400">
+                            Recognized as one of Ranchi's promising young leaders and entrepreneurs, receiving a grant for community impact projects.
+                        </p>
+                    </div>
 
-          <div class="mt-3 flex items-center gap-3">
-            <a href="https://swadishth.shop" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 text-black text-sm card-hover"><i class="fa-solid fa-up-right-from-square"></i> Visit Swadishth</a>
-            <a href="#contact" class="px-4 py-2 rounded-full glass card-hover text-sm"><i class="fa-solid fa-envelope"></i> Contact</a>
-          </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Projects / Ventures (Restored) -->
+        <section id="projects" class="py-24 bg-gray-800/50 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gradient bg-gradient-to-r from-indigo-400 to-purple-500">
+                        My Ventures
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-300">Here's what I'm building.</p>
+                </div>
+                
+                <!-- Project Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    
+                    <!-- Project Card 1 -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-[1.03] hover:shadow-indigo-500/20">
+                        <!-- 
+                            Restoring iframe for Feasibility Media.
+                        -->
+                        <iframe 
+                            src="https://feasibilitymedia.vercel.app" 
+                            class="w-full h-48 border-0"
+                            title="Feasibility Media Website Preview"
+                            sandbox="allow-scripts allow-same-origin">
+                        </iframe>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Feasibility Media</h3>
+                            <p class="text-gray-400 mb-4">My social media management and marketing agency, helping businesses grow their online presence.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-700 text-cyan-300 px-3 py-1 rounded-full text-xs font-medium">Marketing</span>
+                                <span class="bg-gray-700 text-green-300 px-3 py-1 rounded-full text-xs font-medium">Social Media</span>
+                                <span class="bg-gray-700 text-indigo-300 px-3 py-1 rounded-full text-xs font-medium">CEO</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://feasibilitymedia.vercel.app" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 font-medium transition-colors">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project Card 2 -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-[1.03] hover:shadow-indigo-500/20">
+                        <!-- 
+                            Using static image for Swadishth as it blocks embeds.
+                        -->
+                        <img 
+                            src="https://placehold.co/600x400/1F2937/FFFFFF?text=Swadishth" 
+                            class="w-full h-48 object-cover"
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400/1F2937/FFFFFF?text=Swadishth';"
+                            alt="Swadishth Placeholder">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Swadishth</h3>
+                            <p class="text-gray-400 mb-4">My food-tech venture, which I co-founded. We're working to innovate in the food industry.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-700 text-blue-300 px-3 py-1 rounded-full text-xs font-medium">Food-Tech</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-xs font-medium">Startup</span>
+                                <span class="bg-gray-700 text-teal-300 px-3 py-1 rounded-full text-xs font-medium">Co-founder</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://swadishth.shop" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 font-medium transition-colors">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Testimonials (Restored) -->
+        <section id="testimonials" class="py-24 bg-gray-800/50 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gradient bg-gradient-to-r from-indigo-400 to-purple-500">
+                        What People Are Saying
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-300">Testimonials from clients and collaborators.</p>
+                </div>
+                
+                <!-- Testimonials Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Testimonial Card 1 -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl p-8 relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-indigo-600 absolute top-6 left-6 opacity-20"></i>
+                        <p class="text-gray-300 text-lg leading-relaxed relative z-10 mb-6 mt-4">
+                            "Working with Aryaveer and Feasibility Media was a game-changer. Their understanding of social media trends is incredible. Our engagement shot up by 200% in just one month!"
+                        </p>
+                        <div class="flex items-center">
+                            <img class="h-12 w-12 rounded-full object-cover" src="https://placehold.co/100x100/6366F1/FFFFFF?text=R.S" alt="Client Portrait">
+                            <div class="ml-4">
+                                <h4 class="text-base font-semibold text-white">Rohan Sharma</h4>
+                                <p class="text-sm text-gray-400">Owner, Ranchi Cafe Hub</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial Card 2 -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl p-8 relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-indigo-600 absolute top-6 left-6 opacity-20"></i>
+                        <p class="text-gray-300 text-lg leading-relaxed relative z-10 mb-6 mt-4">
+                            "Aryaveer's professionalism and drive are well beyond his years. He delivered a comprehensive marketing strategy that was both creative and effective. Highly recommended."
+                        </p>
+                        <div class="flex items-center">
+                            <img class="h-12 w-12 rounded-full object-cover" src="https://placehold.co/100x100/A855F7/FFFFFF?text=P.K" alt="Client Portrait">
+                            <div class="ml-4">
+                                <h4 class="text-base font-semibold text-white">Priya Kumar</h4>
+                                <p class="text-sm text-gray-400">Founder, Local Artisans</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Articles & Insights (REMOVED) -->
+        
+        <!-- Section 8: Contact -->
+        <section id="contact" class="py-24"> <!-- Removed fade-in-section from here -->
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gradient bg-gradient-to-r from-indigo-400 to-purple-500 fade-in-section">
+                        Get In Touch
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-300 fade-in-section" style="transition-delay: 100ms;">
+                        I'm currently open to new opportunities. Whether you have a project in mind or just want to say hi, my inbox is always open!
+                    </p>
+                </div>
+                
+                <!-- Contact Form -->
+                <form action="#" method="POST" class="space-y-8"> <!-- Increased space-y for new labels -->
+                    
+                    <!-- Floating Label Input: Name -->
+                    <div class="relative z-0 fade-in-section" style="transition-delay: 200ms;">
+                        <input type="text" name="name" id="name" required
+                               class="peer block w-full bg-gray-700 border border-gray-600 rounded-lg shadow-sm py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                               placeholder=" " />
+                        <label for="name" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-4
+                                               peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
+                                               peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:text-indigo-400">
+                            Name
+                        </label>
+                    </div>
+
+                    <!-- Floating Label Input: Email -->
+                    <div class="relative z-0 fade-in-section" style="transition-delay: 300ms;">
+                        <input type="email" name="email" id="email" required
+                               class="peer block w-full bg-gray-700 border border-gray-600 rounded-lg shadow-sm py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                               placeholder=" " />
+                        <label for="email" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-4
+                                                peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
+                                                peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:text-indigo-400">
+                            Email
+                        </label>
+                    </div>
+
+                    <!-- Floating Label Input: Message -->
+                    <div class="relative z-0 fade-in-section" style="transition-delay: 400ms;">
+                        <textarea id="message" name="message" rows="4" required
+                                  class="peer block w-full bg-gray-700 border border-gray-600 rounded-lg shadow-sm py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                  placeholder=" "></textarea>
+                        <label for="message" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-4
+                                                  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
+                                                  peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:text-indigo-400">
+                            Message
+                        </label>
+                    </div>
+
+                    <div class="text-center fade-in-section" style="transition-delay: 500ms;">
+                        <button type="submit"
+                                class="w-full sm:w-auto inline-flex justify-center items-center px-10 py-3 border border-transparent text-base font-medium rounded-lg shadow-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
+                            Send Message
+                            <i class="fa-solid fa-paper-plane ml-3"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-700/50">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <div class="flex justify-center space-x-6 mb-6">
+                <!-- Social Icons - replace # with your links -->
+                <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
+                    <span class="sr-only">GitHub</span>
+                    <!-- GitHub Icon -->
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
+                    <span class="sr-only">LinkedIn</span>
+                    <!-- LinkedIn Icon -->
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
+                    <span class="sr-only">Twitter</span>
+                    <!-- Twitter Icon -->
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M23.953 4.57c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.162c-.422.724-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.79-1.56 2.46-2.548l-.047-.02z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="text-center text-base text-gray-400">
+                &copy; 2025 Aryaveer Mishra. All rights reserved.
+            </p>
         </div>
+    </footer>
 
-      </div>
-    </div>
-  </section>
+    <!-- Back to Top Button -->
+    <a href="#home" id="to-top-btn" class="fixed bottom-8 right-8 bg-indigo-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-2xl z-40 hover:bg-indigo-700 transition-all">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" class="py-12">
-    <div class="mx-auto max-w-6xl px-6 sm:px-8">
-      <h2 class="text-2xl font-bold grad-text fade-in">Testimonials</h2>
-      <div class="mt-6 grid md:grid-cols-2 gap-6">
-        <div class="glass p-6 rounded-lg card-hover fade-in">
-          <p class="text-slate-300">"Aryaveer delivered focused ideas and executed quickly — the social campaign drove real engagement."</p>
-          <div class="mt-4">
-            <div class="font-semibold">Priya Sharma</div>
-            <div class="text-xs text-slate-400">Founder, Local Brand</div>
-          </div>
-        </div>
-        <div class="glass p-6 rounded-lg card-hover fade-in">
-          <p class="text-slate-300">"Smart, curious, and dependable — a talented young builder."</p>
-          <div class="mt-4">
-            <div class="font-semibold">Rahul Verma</div>
-            <div class="text-xs text-slate-400">Community Mentor</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- JavaScript for Mobile Menu & Animations -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconMenu = document.getElementById('icon-menu');
+        const iconClose = document.getElementById('icon-close');
+        const navLinksMobile = document.querySelectorAll('.nav-link-mobile');
+        const navLinksDesktop = document.querySelectorAll('.nav-link-desktop');
+        const toTopBtn = document.getElementById('to-top-btn');
 
-  <!-- ARTICLES & INSIGHTS -->
-  <section id="articles" class="py-12">
-    <div class="mx-auto max-w-6xl px-6 sm:px-8">
-      <h2 class="text-2xl font-bold grad-text fade-in">Articles & Insights</h2>
-      <div class="mt-6 grid sm:grid-cols-3 gap-6">
-        <article class="glass rounded-lg overflow-hidden card-hover fade-in">
-          <img src="https://dummyimage.com/1200x700/111827/fff&text=Post+1" class="w-full h-40 object-cover" alt="post1" />
-          <div class="p-4">
-            <h3 class="font-semibold">How I Built My First MVP</h3>
-            <p class="mt-2 text-slate-300 text-sm">Lessons from early product experiments.</p>
-            <a class="mt-3 inline-block text-sm underline" href="#">Read More →</a>
-          </div>
-        </article>
-        <article class="glass rounded-lg overflow-hidden card-hover fade-in">
-          <img src="https://dummyimage.com/1200x700/111827/fff&text=Post+2" class="w-full h-40 object-cover" alt="post2" />
-          <div class="p-4">
-            <h3 class="font-semibold">Social Media Growth for Teens</h3>
-            <p class="mt-2 text-slate-300 text-sm">Rapid tactics that respect time and schoolwork.</p>
-            <a class="mt-3 inline-block text-sm underline" href="#">Read More →</a>
-          </div>
-        </article>
-        <article class="glass rounded-lg overflow-hidden card-hover fade-in">
-          <img src="https://dummyimage.com/1200x700/111827/fff&text=Post+3" class="w-full h-40 object-cover" alt="post3" />
-          <div class="p-4">
-            <h3 class="font-semibold">Balancing School & Startups</h3>
-            <p class="mt-2 text-slate-300 text-sm">Practical scheduling and priorities.</p>
-            <a class="mt-3 inline-block text-sm underline" href="#">Read More →</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+        // Toggle mobile menu
+        menuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            iconMenu.classList.toggle('hidden', !isHidden);
+            iconClose.classList.toggle('hidden', isHidden);
+        });
 
-  <!-- CONTACT -->
-  <section id="contact" class="py-12">
-    <div class="mx-auto max-w-3xl px-6 sm:px-8">
-      <h2 class="text-2xl font-bold grad-text fade-in">Contact</h2>
-      <p class="mt-2 text-slate-300 fade-in">Have a project, collaboration, or question? Send a message — I usually reply in a few days.</p>
+        // Function to close the mobile menu
+        function closeMobileMenu() {
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                iconMenu.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+        }
+        
+        // Close mobile menu when a mobile nav link is clicked
+        navLinksMobile.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
 
-      <form id="contactForm" class="mt-6 grid gap-4 fade-in" onsubmit="handleContact(event)">
-        <div class="grid sm:grid-cols-2 gap-4">
-          <input required name="name" placeholder="Your name" class="glass p-3 rounded w-full bg-transparent border border-slate-700" />
-          <input required name="email" type="email" placeholder="Your email" class="glass p-3 rounded w-full bg-transparent border border-slate-700" />
-        </div>
-        <textarea required name="message" rows="5" placeholder="Message" class="glass p-3 rounded w-full bg-transparent border border-slate-700"></textarea>
-        <div class="flex items-center gap-3">
-          <button type="submit" class="px-5 py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 text-black font-semibold card-hover">
-            <i class="fa-solid fa-paper-plane"></i> Send Message
-          </button>
-          <div id="contactNotice" class="text-sm text-slate-300"></div>
-        </div>
-      </form>
-    </div>
-  </section>
+        // Optional: Close mobile menu if window is resized to desktop width
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) { // 768px is 'md' breakpoint
+                closeMobileMenu();
+            }
+        });
 
-  <!-- FOOTER -->
-  <footer class="py-8 mt-12">
-    <div class="mx-auto max-w-6xl px-6 sm:px-8 border-t border-slate-800 pt-8">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500 flex items-center justify-center text-black font-bold">AM</div>
-          <div class="text-sm">
-            <div class="font-semibold">Aryaveer Mishra</div>
-            <div class="text-xs text-slate-400">Founder &amp; CEO — Feasibility Media · Co-Founder &amp; CEO — Swadishth</div>
-          </div>
-        </div>
+        // Scroll Animation Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.fade-in-section');
 
-        <div class="flex items-center gap-4">
-          <a href="#" class="text-slate-300 hover:text-white"><i class="fa-brands fa-linkedin fa-lg"></i></a>
-          <a href="#" class="text-slate-300 hover:text-white"><i class="fa-brands fa-twitter fa-lg"></i></a>
-          <a href="#" class="text-slate-300 hover:text-white"><i class="fa-brands fa-instagram fa-lg"></i></a>
-        </div>
-      </div>
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the section is visible
+            });
 
-      <div class="mt-6 text-sm text-slate-500 text-center">© <span id="year"></span> Aryaveer Mishra — All rights reserved.</div>
-    </div>
-  </footer>
-</main>
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
 
-<!-- BACK TO TOP button -->
-<button id="backTop" aria-label="Back to top" class="fixed right-6 bottom-6 w-12 h-12 rounded-full glass flex items-center justify-center shadow-lg z-50">
-  <i class="fa-solid fa-chevron-up"></i>
-</button>
+        // Back to Top Button Logic
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) { // Show button after scrolling 400px
+                toTopBtn.classList.add('is-visible');
+            } else {
+                toTopBtn.classList.remove('is-visible');
+            }
+        });
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  let mobileOpen = false;
-  hamburger.addEventListener('click', () => {
-    mobileOpen = !mobileOpen;
-    if (mobileOpen) {
-      mobileMenu.style.transform = 'scaleY(1)';
-      mobileMenu.classList.add('p-4');
-    } else {
-      mobileMenu.style.transform = 'scaleY(0)';
-    }
-    hamburger.querySelector('i').classList.toggle('fa-bars');
-    hamburger.querySelector('i').classList.toggle('fa-xmark');
-  });
-
-  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    mobileMenu.style.transform = 'scaleY(0)'; mobileOpen = false;
-    hamburger.querySelector('i').classList.remove('fa-xmark'); hamburger.querySelector('i').classList.add('fa-bars');
-  }));
-
-  const observer = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-        observer.unobserve(entry.target);
-      }
-    }
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  const backTop = document.getElementById('backTop');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) backTop.classList.add('visible'); else backTop.classList.remove('visible');
-  });
-  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-  document.querySelectorAll('a, button, input, textarea').forEach(el => {
-    el.addEventListener('focus', () => el.classList.add('ring'));
-    el.addEventListener('blur', () => el.classList.remove('ring'));
-  });
-
-  function handleContact(e) {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
-    const notice = document.getElementById('contactNotice');
-    if (!name || !email || !message) {
-      notice.textContent = 'Please complete all fields.'; notice.style.color = 'tomato'; return;
-    }
-    notice.textContent = 'Sending...'; notice.style.color = '#9CA3AF';
-    setTimeout(() => {
-      notice.textContent = 'Thanks! Message received — I will reply soon.';
-      notice.style.color = '#a7f3d0';
-      form.reset();
-    }, 700);
-  }
-
-  const navLinks = document.querySelectorAll('nav a[href^="#"], #mobileMenu a[href^="#"]');
-  navLinks.forEach(a => {
-    a.addEventListener('click', () => {
-      if (mobileOpen) {
-        mobileMenu.style.transform = 'scaleY(0)'; mobileOpen = false;
-        hamburger.querySelector('i').classList.remove('fa-xmark'); hamburger.querySelector('i').classList.add('fa-bars');
-      }
-    });
-  });
-
-  const sections = document.querySelectorAll('main > section[id]');
-  const navItems = Array.from(document.querySelectorAll('#navLinks a'));
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navItems.forEach(i => i.classList.remove('opacity-100', 'text-white'));
-        const id = entry.target.id;
-        const match = document.querySelector('#navLinks a[href="#' + id + '"]');
-        if (match) match.classList.add('opacity-100', 'text-white');
-      }
-    });
-  }, { threshold: 0.35 });
-  sections.forEach(s => sectionObserver.observe(s));
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileOpen) {
-      mobileMenu.style.transform = 'scaleY(0)'; mobileOpen = false;
-      hamburger.querySelector('i').classList.remove('fa-xmark'); hamburger.querySelector('i').classList.add('fa-bars');
-    }
-  });
-</script>
 </body>
 </html>
+
