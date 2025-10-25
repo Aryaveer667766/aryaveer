@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aryaveer Mishra — Student & Entrepreneur</title>
+
+  <!-- Tailwind CDN (allows utility classes without a build step) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pc6Y3qFqJqgk0g5kJkE0mXGf4p6d4I2f0qE3JZ+YtGgS0f6q0bR3Phq3n2jQ7Q0Zl2jQ+4oFzFP7E7s3yZCw1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Custom small CSS for glass, gradients, and tweaks (keeps single-file) -->
+  <style>
+    :root{
+      --glass-bg: rgba(255,255,255,0.03);
+      --glass-border: rgba(255,255,255,0.06);
+      --accent-from: #ff7ab6;
+      --accent-via: #a78bfa;
+      --accent-to: #60a5fa;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* Backdrop blur (glassmorphism) */
+    .glass {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+    }
+
+    /* gradient headings */
+    .grad-text {
+      background-image: linear-gradient(90deg, var(--accent-from), var(--accent-via), var(--accent-to));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* subtle card hover */
+    .card-hover { transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s; }
+    .card-hover:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 12px 30px rgba(2,6,23,0.6); }
+
+    /* fade-in initial state */
+    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .fade-in.show { opacity: 1; transform: translateY(0); }
+
+    /* back to top button */
+    #backTop {
+      transition: opacity .25s, transform .25s;
+      opacity: 0; pointer-events: none;
+    }
+    #backTop.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* small friendly focus */
+    a:focus, button:focus, input:focus, textarea:focus { outline: 2px solid rgba(124,58,237,0.25); outline-offset: 2px; }
+
+    /* hero background subtle pattern */
+    body {
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.02), transparent 6%),
+                  radial-gradient(800px 400px at 90% 90%, rgba(255,255,255,0.015), transparent 6%),
+                  #060612;
+      color: #e6eef8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    /* responsive iframe card */
+    .iframe-wrap { aspect-ratio: 16/9; }
+    @media (max-width: 640px) {
+      .iframe-wrap { aspect-ratio: 4/3; }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+<!-- NAVBAR -->
+<header class="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6">
+  <nav class="mx-auto max-w-6xl glass rounded-2xl p-3 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <a href="#hero" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500 flex items-center justify-center text-black font-bold">AM</div>
+        <div class="hidden sm:block">
+          <div class="text-sm font-semibold">Aryaveer Mishra</div>
+          <div class="text-xs text-slate-300">Student · Entrepreneur</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- desktop nav -->
+    <ul id="navLinks" class="hidden md:flex items-center gap-6 text-sm">
+      <li><a class="hover:underline" href="#ventures">Ventures</a></li>
+      <li><a class="hover:underline" href="#services">Services</a></li>
+      <li><a class="hover:underline" href="#achievements">Achievements</a></li>
+      <li><a class="hover:underline" href="#articles">Articles</a></li>
+      <li><a class="hover:underline" href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm card-hover">
+        <i class="fa-regular fa-paper-plane"></i><span>Get In Touch</span>
+      </a>
+
+      <!-- mobile hamburger -->
+      <button id="hamburger" aria-label="Open menu" class="md:hidden p-2 rounded-md glass">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- mobile menu -->
+  <div id="mobileMenu" class="md:hidden mt-3 mx-auto max-w-6xl glass rounded-2xl p-4 transform-gpu scale-y-0 origin-top transition-transform" style="transform-origin:top;">
+    <ul class="flex flex-col gap-3 text-sm">
+      <li><a href="#ventures" class="block p-3 rounded card-hover">Ventures</a></li>
+      <li><a href="#services" class="block p-3 rounded card-hover">Services</a></li>
+      <li><a href="#achievements" class="block p-3 rounded card-hover">Achievements</a></li>
+      <li><a href="#articles" class="block p-3 rounded card-hover">Articles</a></li>
+      <li><a href="#contact" class="block p-3 rounded card-hover">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="pt-28">
+
+  <!-- HERO -->
+  <section id="hero" class="min-h-screen flex items-center">
+    <div class="mx-auto max-w-6xl px-6 sm:px-8 py-20 flex flex-col lg:flex-row items-center gap-10">
+      <div class="flex-1 fade-in">
+        <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight grad-text">Aryaveer Mishra</h1>
+        <p class="mt-4 text-slate-300 max-w-2xl text-lg">Student & Entrepreneur — building digital experiences, small ventures, and creative projects while in 11th grade.</p>
+
+        <div class="mt-8 flex gap-4 flex-wrap">
+          <a href="#ventures" class="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 text-black font-semibold shadow-lg card-hover">
+            <i class="fa-solid fa-rocket"></i> View Ventures
+          </a>
+          <a href="#contact" class="inline-flex items-center gap-3 px-5 py-3 rounded-full glass border border-slate-700 card-hover">
+            <i class="fa-regular fa-envelope"></i> Get In Touch
+          </a>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-96 fade-in">
+        <div class="glass rounded-2xl p-5">
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=29f6d5c2a8748f7f3f63fa7cdbf7f73c" alt="Profile" class="w-20 h-20 object-cover rounded-lg shadow-md" />
+            <div>
+              <div class="text-lg font-semibold">Hi, I'm Aryaveer</div>
+              <div class="text-xs text-slate-300">11th Grade • Founder of small ventures</div>
+            </div>
+          </div>
+
+          <div class="mt-4 grid grid-cols-2 gap-3 text-sm text-slate-300">
+            <div class="flex items-center gap-3"><i class="fa-solid fa-school text-sm"></i> Grade: XI</div>
+            <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot"></i> India</div>
+            <div class="flex items-center gap-3"><i class="fa-solid fa-lightbulb"></i> Ideas</div>
+            <div class="flex items-center gap-3"><i class="fa-solid fa-user-group"></i> Team-builder</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AS FEATURED IN -->
+  <section id="featured" class="py-12">
+    <div class="mx-auto max-w-6xl px-6 sm:px-8">
+      <h2 class="text-2xl font-bold grad-text fade-in">As Featured In</h2>
+      <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-6 fade-in">
+        <div class="glass p-4 flex items-center justify-center text-slate-300 card-hover"><img src="https://dummyimage.com/140x40/1f2937/fff&text=Hindustan+Times" alt="HT" /></div>
+        <div class="glass p-4 flex items-center justify-center text-slate-300 card-hover"><img src="https://dummyimage.com/140x40/1f2937/fff&text=YourStory" alt="YS" /></div>
+        <div class="glass p-4 flex items-center justify-center text-slate-300 card-hover"><img src="https://dummyimage.com/140x40/1f2937/fff&text=The+Better" alt="Better" /></div>
+        <div class="glass p-4 flex items-center justify-center text-slate-300 card-hover"><img src="https://dummyimage.com/140x40/1f2937/fff&text=Local+News" alt="Local" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT & TOOLKIT -->
+  <section id="about" class="py-12">
+    <div class="mx-auto max-w-6xl px-6 sm:px-8 grid lg:grid-cols-2 gap-8 items-start">
+      <div class="fade-in">
+        <h2 class="text-2xl font-bold grad-text">About Me</h2>
+        <p class="mt-4 text-slate-300">I'm an 11th-grade student passionate about entrepreneurship, product design, and digital marketing. I build small web projects, lead teams, and enjoy learning by shipping real things. I balance school and work by focusing on smart systems and creative outreach.</p>
+        <ul class="mt-4 space-y-2 text-slate-300">
+          <li class="flex items-start gap-3"><i class="fa-solid fa-check text-sm mt-1"></i> Rapid prototyping and MVP building</li>
+          <li class="flex items-start gap-3"><i class="fa-solid fa-check text-sm mt-1"></i> Social media growth & content strategy</li>
+          <li class="flex items-start gap-3"><i class="fa-solid fa-check text-sm mt-1"></i> Small team leadership & community growth</li>
+        </ul>
+      </div>
+
+      <div class="fade-in">
+        <h2 class="text-2xl font-bold grad-text">My Toolkit</h2>
+        <div class="mt-4 grid grid-cols-2 gap-3">
+          <div class="glass p-3 rounded-lg flex items-center gap-3 card-hover">
+            <i class="fa-solid fa-briefcase text-xl"></i>
+            <div>
+              <div class="font-semibold">Entrepreneurship</div>
+              <div class="text-xs text-slate-300">Idea → MVP → Launch</div>
+            </div>
+          </div>
+          <div class="glass p-3 rounded-lg flex items-center gap-3 card-hover">
+            <i class="fa-brands fa-instagram text-xl"></i>
+            <div>
+              <div class="font-semibold">Social Media</div>
+              <div class="text-xs text-slate-300">Growth & Strategy</div>
+            </div>
+          </div>
+          <div class="glass p-3 rounded-lg flex items-center gap-3 card-hover">
+            <i class="fa-solid fa-pen-nib text-xl"></i>
+            <div>
+              <div class="font-semibold">Content Creation</div>
+              <div class="text-xs text-slate-300">Copy & Visuals</div>
+            </div>
+          </div>
+          <div class="glass p-3 rounded-lg flex items-center gap-3 card-hover">
+            <i class="fa-brands fa-html5 text-xl"></i>
+            <div>
+              <div class="font-semibold">Web Basics</div>
+              <div class="text-xs text-slate-300">HTML/CSS/Vanilla JS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-12">
+    <div class="mx-auto max-w-6xl px-6 sm:px-8">
+      <h2 class="text-2xl font-bold grad-text fade-in">Services</h2>
+      <div class="mt-6 grid sm:grid-cols-3 gap-6">
+        <div class="glass p-6 rounded-lg card-hover fade-in">
+          <i class="fa-solid fa-chart-line text-2xl"></i>
+          <h3 class="mt-3 font-semibold">Social Media Management</h3>
+          <p class="mt-2 text-slate-300 text-sm">Growth strategies, content calendars, and community building for early-stage brands.</p>
+        </div>
+        <div class="glass p-6 rounded-lg card-hover fade-in">
+          <i class="fa-solid fa-camera-retro text-2xl"></i>
+          <h3 class="mt-3 font-semibold">Content Creation</h3>
+          <p class="mt-2 text-slate-300 text-sm">Short videos, creatives, and copy for campaigns that convert.</p>
+        </div>
+        <div class="glass p-6 rounded-lg card-hover fade-in">
+          <i class="fa-solid fa-lightbulb text-2xl"></i>
+          <h3 class="mt-3 font-semibold">Idea Consulting</h3>
+          <p class="mt-2 text-slate-300 text-sm">Early-stage feedback, lean experiments, and launch playbooks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MY MISSION -->
+  <section id="mission" class="py-16">
+    <div class="mx-auto max-w-4xl px-6 sm:px-8 text-center fade-in">
+      <h2 class="text-2xl font-bold grad-text">My Mission</h2>
+      <blockquote class="mt-6 text-slate-300 text-lg italic glass p-6 rounded-xl">"Build small. Learn fast. Help others grow." — I focus on shipping useful projects that teach me and create impact for people around me.</blockquote>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements" class="py-12">
+    <div class="mx-auto max-w-6xl px-6 sm:px-8">
+      <h2 class="text-2xl font-bold grad-text fade-in">Achievements</h2>
+      <div class="mt-6 grid sm:grid-cols-3 gap-6">
+        <div class="glass p-6 rounded-lg card-hover fade-in">
+          <i class="fa-solid fa-award text-2xl"></i>
+          <h3 class="mt-3 font-semibold">Academic Excellence</h3>
+          <p class="mt-2 text-slate-300 text-sm">Consistent high grades and strong academic performance.</p>
+        </div>
+        <div class="glass p-6 rounded-lg card-hover fade-in">
+          <i class="fa-solid fa-lightbulb-on text-2xl"></i>
+          <h3 class="mt-3 font-semibold">Student Innovator Prize</h3>
+          <p class="mt-2 text-slate-300 text-sm">Awarded for a small-school tech initiative.</p>
+        </div>
+        <div class="glass p-6 rounded-lg card-hover fade-in">
+          <i class="fa-solid fa-handshake text-2xl"></i>
+          <h3 class="mt-3 font-semibold">Community Leader</h3>
+          <p class="mt-2 text-slate-300 text-sm">Organized local workshops and mentoring sessions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENTURES / PROJECTS -->
+  <section id="ventures" class="py-12">
+    <div class="mx-auto max-w-6xl px-6 sm:px-8">
+      <h2 class="text-2xl font-bold grad-text fade-in">Ventures</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <!-- Live embed (iframe). If blocked, user can click link. -->
+        <div class="glass p-4 rounded-lg card-hover fade-in">
+          <div class="text-sm text-slate-300 mb-3">Live site embed</div>
+          <div class="rounded overflow-hidden iframe-wrap">
+            <iframe src="https://example.com" title="Live Venture (example.com)" class="w-full h-full border-0" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+          </div>
+          <div class="mt-3 text-xs text-slate-400">If the site blocks embedding, <a class="underline" href="https://example.com" target="_blank" rel="noopener">open it in a new tab</a>.</div>
+        </div>
+
+        <!-- Placeholder -->
+        <div class="glass p-4 rounded-lg card-hover fade-in">
+          <div class="text-sm text-slate-300 mb-3">Upcoming project</div>
+          <img src="https://dummyimage.com/1200x700/1f2937/fff&text=Project+Preview" alt="Project preview" class="w-full h-56 object-cover rounded" />
+          <h3 class="mt-3 font-semibold">Project Name</h3>
+          <p class="mt-2 text-slate-300 text-sm">Short description of the project and goals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="py-12">
+    <div class="mx-auto max-w-6xl px-6 sm:px-8">
+      <h2 class="text-2xl font-bold grad-text fade-in">Testimonials</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <div class="glass p-6 rounded-lg card-hover fade-in">
+          <p class="text-slate-300">"Aryaveer delivered focused ideas and executed quickly — the social campaign drove real engagement."</p>
+          <div class="mt-4">
+            <div class="font-semibold">Priya Sharma</div>
+            <div class="text-xs text-slate-400">Founder, Local Brand</div>
+          </div>
+        </div>
+        <div class="glass p-6 rounded-lg card-hover fade-in">
+          <p class="text-slate-300">"Smart, curious, and dependable — a talented young builder."</p>
+          <div class="mt-4">
+            <div class="font-semibold">Rahul Verma</div>
+            <div class="text-xs text-slate-400">Community Mentor</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES & INSIGHTS -->
+  <section id="articles" class="py-12">
+    <div class="mx-auto max-w-6xl px-6 sm:px-8">
+      <h2 class="text-2xl font-bold grad-text fade-in">Articles & Insights</h2>
+      <div class="mt-6 grid sm:grid-cols-3 gap-6">
+        <article class="glass rounded-lg overflow-hidden card-hover fade-in">
+          <img src="https://dummyimage.com/1200x700/111827/fff&text=Post+1" class="w-full h-40 object-cover" alt="post1" />
+          <div class="p-4">
+            <h3 class="font-semibold">How I Built My First MVP</h3>
+            <p class="mt-2 text-slate-300 text-sm">Lessons from early product experiments.</p>
+            <a class="mt-3 inline-block text-sm underline" href="#">Read More →</a>
+          </div>
+        </article>
+        <article class="glass rounded-lg overflow-hidden card-hover fade-in">
+          <img src="https://dummyimage.com/1200x700/111827/fff&text=Post+2" class="w-full h-40 object-cover" alt="post2" />
+          <div class="p-4">
+            <h3 class="font-semibold">Social Media Growth for Teens</h3>
+            <p class="mt-2 text-slate-300 text-sm">Rapid tactics that respect time and schoolwork.</p>
+            <a class="mt-3 inline-block text-sm underline" href="#">Read More →</a>
+          </div>
+        </article>
+        <article class="glass rounded-lg overflow-hidden card-hover fade-in">
+          <img src="https://dummyimage.com/1200x700/111827/fff&text=Post+3" class="w-full h-40 object-cover" alt="post3" />
+          <div class="p-4">
+            <h3 class="font-semibold">Balancing School & Startups</h3>
+            <p class="mt-2 text-slate-300 text-sm">Practical scheduling and priorities.</p>
+            <a class="mt-3 inline-block text-sm underline" href="#">Read More →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-12">
+    <div class="mx-auto max-w-3xl px-6 sm:px-8">
+      <h2 class="text-2xl font-bold grad-text fade-in">Contact</h2>
+      <p class="mt-2 text-slate-300 fade-in">Have a project, collaboration, or question? Send a message — I usually reply in a few days.</p>
+
+      <form id="contactForm" class="mt-6 grid gap-4 fade-in" onsubmit="handleContact(event)">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <input required name="name" placeholder="Your name" class="glass p-3 rounded w-full bg-transparent border border-slate-700" />
+          <input required name="email" type="email" placeholder="Your email" class="glass p-3 rounded w-full bg-transparent border border-slate-700" />
+        </div>
+        <textarea required name="message" rows="5" placeholder="Message" class="glass p-3 rounded w-full bg-transparent border border-slate-700"></textarea>
+        <div class="flex items-center gap-3">
+          <button type="submit" class="px-5 py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 text-black font-semibold card-hover">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+          <div id="contactNotice" class="text-sm text-slate-300"></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 mt-12">
+    <div class="mx-auto max-w-6xl px-6 sm:px-8 border-t border-slate-800 pt-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500 flex items-center justify-center text-black font-bold">AM</div>
+          <div class="text-sm">
+            <div class="font-semibold">Aryaveer Mishra</div>
+            <div class="text-xs text-slate-400">Student & Entrepreneur</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-slate-300 hover:text-white"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+          <a href="#" class="text-slate-300 hover:text-white"><i class="fa-brands fa-twitter fa-lg"></i></a>
+          <a href="#" class="text-slate-300 hover:text-white"><i class="fa-brands fa-instagram fa-lg"></i></a>
+        </div>
+      </div>
+
+      <div class="mt-6 text-sm text-slate-500 text-center">© <span id="year"></span> Aryaveer Mishra — All rights reserved.</div>
+    </div>
+  </footer>
+</main>
+
+<!-- BACK TO TOP button -->
+<button id="backTop" aria-label="Back to top" class="fixed right-6 bottom-6 w-12 h-12 rounded-full glass flex items-center justify-center shadow-lg z-50">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+<!-- All JavaScript included inline (single file) -->
+<script>
+  // initial small setup
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  let mobileOpen = false;
+  hamburger.addEventListener('click', () => {
+    mobileOpen = !mobileOpen;
+    if (mobileOpen) {
+      mobileMenu.style.transform = 'scaleY(1)';
+      mobileMenu.classList.add('p-4');
+    } else {
+      mobileMenu.style.transform = 'scaleY(0)';
+    }
+    // animate icon
+    hamburger.querySelector('i').classList.toggle('fa-bars');
+    hamburger.querySelector('i').classList.toggle('fa-xmark');
+  });
+
+  // Smooth-scroll is enabled via CSS, ensure mobile menu closes on link click
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.style.transform = 'scaleY(0)'; mobileOpen = false;
+    hamburger.querySelector('i').classList.remove('fa-xmark'); hamburger.querySelector('i').classList.add('fa-bars');
+  }));
+
+  // Fade-in on scroll using IntersectionObserver
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    }
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Back to top button
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      backTop.classList.add('visible');
+    } else {
+      backTop.classList.remove('visible');
+    }
+  });
+  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Hover effects for keyboard users: add subtle transform on focus
+  document.querySelectorAll('a, button, input, textarea').forEach(el => {
+    el.addEventListener('focus', () => el.classList.add('ring'));
+    el.addEventListener('blur', () => el.classList.remove('ring'));
+  });
+
+  // Contact form handler (no real backend) — shows a friendly message and clears fields
+  function handleContact(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+    const notice = document.getElementById('contactNotice');
+
+    // simple validation feedback
+    if (!name || !email || !message) {
+      notice.textContent = 'Please complete all fields.';
+      notice.style.color = 'tomato';
+      return;
+    }
+    // simulate sending
+    notice.textContent = 'Sending...';
+    notice.style.color = '#9CA3AF';
+
+    // fake delay then success (instant for UX, but not async work outside this response)
+    setTimeout(() => {
+      notice.textContent = 'Thanks! Message received — I will reply soon.';
+      notice.style.color = '#a7f3d0';
+      form.reset();
+    }, 700);
+  }
+
+  // Small enhancement: make internal nav links smooth and add active state on scroll
+  const navLinks = document.querySelectorAll('nav a[href^="#"], #mobileMenu a[href^="#"]');
+  navLinks.forEach(a => {
+    a.addEventListener('click', (ev) => {
+      // let CSS handle smooth behavior
+      // close mobile menu if open
+      if (mobileOpen) {
+        mobileMenu.style.transform = 'scaleY(0)'; mobileOpen = false;
+        hamburger.querySelector('i').classList.remove('fa-xmark'); hamburger.querySelector('i').classList.add('fa-bars');
+      }
+    });
+  });
+
+  // Optional: highlight current section in nav while scrolling
+  const sections = document.querySelectorAll('main > section[id]');
+  const navItems = Array.from(document.querySelectorAll('#navLinks a'));
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navItems.forEach(i => i.classList.remove('opacity-100', 'text-white'));
+        const id = entry.target.id;
+        const match = document.querySelector('#navLinks a[href="#' + id + '"]');
+        if (match) match.classList.add('opacity-100', 'text-white');
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s => sectionObserver.observe(s));
+
+  // Accessibility: close mobile menu with ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileOpen) {
+      mobileMenu.style.transform = 'scaleY(0)'; mobileOpen = false;
+      hamburger.querySelector('i').classList.remove('fa-xmark'); hamburger.querySelector('i').classList.add('fa-bars');
+    }
+  });
+</script>
+</body>
+</html>
